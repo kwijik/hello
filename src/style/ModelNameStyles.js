@@ -1,6 +1,6 @@
 import { StyleSheet } from 'aphrodite/no-important';
 const coolFont = {
-    fontFamily:'Love Ya Like A Sister, cursive',
+    fontFamily: 'Love Ya Like A Sister',
     fontStyle: 'cursive',
     src: "url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister')"
 }
@@ -15,10 +15,7 @@ export default StyleSheet.create({
         textAlign: 'center',
         color:'black',
         fontStyle: 'cursive',
-        fontFamily: 'coolFont'
-    },
-    p: {
-        color: 'black',
-        fontSize: '20pt',
+        //fontFamily: coolFont
+        fontFamily: "Lucida"
     }
 });
