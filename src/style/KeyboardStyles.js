@@ -5,7 +5,7 @@ export default StyleSheet.create({
         background: '#708090',
         position: 'absolute',
         bottom: '7%',
-
+        display: 'flex',
         left: '11%',
         width: '78%',
         height: '52%',
