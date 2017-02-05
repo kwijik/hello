@@ -5,8 +5,8 @@ export default StyleSheet.create({
         background: '#F0FFFF',
         position: 'absolute',
         top: '8%',
-        left: '5%',
-        width: '20%',
+        left: '14%',
+        width: '72%',
         height: '32%',
         borderRadius: '40px',
         border: '2px solid black'
