@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 import { css } from 'aphrodite/no-important';
 
-import styles from '../style/KeybordStyles';
+import styles from '../style/KeyboardStyles';
 
-export default class Antenna extends Component {
+export default class Keyboard extends Component {
   render(){
     return (
-      <div className={css(styles.keybord)}>
+      <div className={css(styles.keyboard)}>
 
       </div>
     )

@@ -65,7 +65,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	__webpack_require__(210);
+	__webpack_require__(214);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21525,9 +21525,17 @@
 
 	var _Antenna2 = _interopRequireDefault(_Antenna);
 
+	var _Screen = __webpack_require__(208);
+
+	var _Screen2 = _interopRequireDefault(_Screen);
+
+	var _Keyboard = __webpack_require__(211);
+
+	var _Keyboard2 = _interopRequireDefault(_Keyboard);
+
 	var _noImportant = __webpack_require__(181);
 
-	var _AppStyles = __webpack_require__(208);
+	var _AppStyles = __webpack_require__(213);
 
 	var _AppStyles2 = _interopRequireDefault(_AppStyles);
 
@@ -21553,8 +21561,10 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: (0, _noImportant.css)(_AppStyles2.default.container) },
-	        _react2.default.createElement(_Antenna2.default, null)
+	        { className: (0, _noImportant.css)(_AppStyles2.default.case) },
+	        _react2.default.createElement(_Antenna2.default, null),
+	        _react2.default.createElement(_Screen2.default, null),
+	        _react2.default.createElement(_Keyboard2.default, null)
 	      );
 	    }
 	  }]);
@@ -23490,11 +23500,14 @@
 
 	exports.default = _noImportant.StyleSheet.create({
 	    antenna: {
-	        background: '#E6E6E7',
+	        background: '#708090',
 	        position: 'absolute',
-	        top: '-8%',
-	        width: '20%',
-	        height: '20%'
+	        top: '-10%',
+	        width: '14%',
+	        height: '20%',
+	        zIndex: -1,
+	        borderRadius: '50px',
+	        border: '2px solid black'
 	    }
 	});
 
@@ -23505,25 +23518,77 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _ScreenStyles = __webpack_require__(209);
+
+	var _ScreenStyles2 = _interopRequireDefault(_ScreenStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Screen = function (_Component) {
+	  _inherits(Screen, _Component);
+
+	  function Screen() {
+	    _classCallCheck(this, Screen);
+
+	    return _possibleConstructorReturn(this, (Screen.__proto__ || Object.getPrototypeOf(Screen)).apply(this, arguments));
+	  }
+
+	  _createClass(Screen, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', { className: (0, _noImportant.css)(_ScreenStyles2.default.screen) });
+	    }
+	  }]);
+
+	  return Screen;
+	}(_react.Component);
+
+	exports.default = Screen;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
-	var _aphrodite = __webpack_require__(209);
+	var _aphrodite = __webpack_require__(210);
 
 	exports.default = _aphrodite.StyleSheet.create({
-	    container: {
-	        background: '#E6E6E7',
-	        marginTop: '100px',
-	        width: '320px',
-	        height: '490px',
-	        borderRadius: '20px',
-	        boxShadow: '5px 5px 5px #000',
-	        border: '3px solid black'
+	    screen: {
+	        background: '#F0FFFF',
+	        position: 'absolute',
+	        top: '8%',
+	        left: '14%',
+	        width: '72%',
+	        height: '32%',
+	        borderRadius: '40px',
+	        border: '2px solid black'
 	    }
 	});
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23545,7 +23610,108 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 210 */
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _KeyboardStyles = __webpack_require__(212);
+
+	var _KeyboardStyles2 = _interopRequireDefault(_KeyboardStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Keyboard = function (_Component) {
+	  _inherits(Keyboard, _Component);
+
+	  function Keyboard() {
+	    _classCallCheck(this, Keyboard);
+
+	    return _possibleConstructorReturn(this, (Keyboard.__proto__ || Object.getPrototypeOf(Keyboard)).apply(this, arguments));
+	  }
+
+	  _createClass(Keyboard, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', { className: (0, _noImportant.css)(_KeyboardStyles2.default.keyboard) });
+	    }
+	  }]);
+
+	  return Keyboard;
+	}(_react.Component);
+
+	exports.default = Keyboard;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _noImportant = __webpack_require__(181);
+
+	exports.default = _noImportant.StyleSheet.create({
+	    keyboard: {
+	        background: '#F0FFFF',
+	        position: 'absolute',
+	        bottom: '8%',
+	        left: '11%',
+	        width: '78%',
+	        height: '52%',
+	        borderRadius: '40px',
+	        border: '2px solid red'
+	    }
+	});
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _aphrodite = __webpack_require__(210);
+
+	exports.default = _aphrodite.StyleSheet.create({
+	    case: {
+	        position: 'absolute',
+	        background: '#708090',
+	        marginTop: '100px',
+	        width: '320px',
+	        height: '490px',
+	        borderRadius: '20px',
+	        boxShadow: '5px 5px 5px #000',
+	        border: '3px solid black'
+	    }
+	});
+
+/***/ },
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23553,10 +23719,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(211);
+	var content = __webpack_require__(215);
 	if (typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(217)(content, {});
 	if (content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if (false) {
@@ -23575,21 +23741,21 @@
 	}
 
 /***/ },
-/* 211 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(212)();
+	exports = module.exports = __webpack_require__(216)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "body {\n    color: blue;\n    background: yellow;\n}\n", ""]);
+	exports.push([module.id, "body {\n    color: blue;\n    background: yellow;\n}\n.container{\n    position: relative;\n    margin: auto;\n    display: block;\n    \n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 212 */
+/* 216 */
 /***/ function(module, exports) {
 
 	/*
@@ -23645,7 +23811,7 @@
 
 
 /***/ },
-/* 213 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
