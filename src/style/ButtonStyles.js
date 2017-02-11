@@ -17,7 +17,6 @@
                    backgroundColor:'red'
               }
           },
-
           wrapper: {
               display: 'contents',
               margin: '2%'
