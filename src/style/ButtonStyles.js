@@ -13,7 +13,11 @@
               height: '2.5rem',
               fontSize: '1.2rem',
               fontFamily: 'Love Ya Like A Sister',
+              ':hover':{
+                   backgroundColor:'red'
+              }
           },
+
           wrapper: {
               display: 'contents',
               margin: '2%'
