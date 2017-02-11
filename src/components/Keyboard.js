@@ -9,8 +9,10 @@ export default class Keyboard extends Component {
   render(){
     return (
       <div className={css(styles.keyboard)}>
-          <UsualButton />
-          <ButtonTwo />
+          <UsualButton bValue='1'/>
+          <UsualButton bValue='2'/>
+          <UsualButton bValue='3'/>
+         
       </div>
     )
   }

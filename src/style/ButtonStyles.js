@@ -9,12 +9,13 @@
               margin: '5%',
               textAlign: 'center',
               color: '#000',
-              width: '3.5rem',
-              height: '2.8rem',
+              width: '55px',
+              height: '2.5rem',
               fontSize: '1.2rem',
-              fontFamily: 'Love Ya Like A Sister'
+              fontFamily: 'Love Ya Like A Sister',
           },
-          p: {
-             margin: '5%'
+          wrapper: {
+              display: 'contents',
+              margin: '2%'
           }
       });
