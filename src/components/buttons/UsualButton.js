@@ -10,14 +10,15 @@ export default class UsualButton extends Component {
       this.state = {
           hover: false
       }
+      
   }
-  function showValue(e) {
+  showValue = () => {
       console.log(this.props.bValue);
-  } 
+  }
   render(){
     return (
       <div className = { css(styles.wrapper) }>
-          <div className = { css(styles.myButton) } onClick={showValue}>
+          <div className = { css(styles.myButton) } onClick={this.showValue}>
                   {this.props.bValue}
           </div>
       </div>
