@@ -13,8 +13,11 @@
               height: '2.5rem',
               fontSize: '1.2rem',
               fontFamily: 'Love Ya Like A Sister',
-              ':hover':{
+              ':active':{
                    backgroundColor:'red'
+              },
+              ':hover':{
+                  boxShadow: '2px 2px #666'
               }
           },
           wrapper: {
