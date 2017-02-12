@@ -17,7 +17,8 @@
                    backgroundColor:'red'
               },
               ':hover':{
-                  boxShadow: '2px 2px #666'
+                  boxShadow: '2px 2px #666',
+                  cursor: 'pointer'
               }
           },
           wrapper: {
