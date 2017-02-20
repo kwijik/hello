@@ -10,7 +10,6 @@ export default class UsualButton extends Component {
       this.state = {
           hover: false
       }
-      
   }
   showValue = () => {
       console.log(this.props.bValue);

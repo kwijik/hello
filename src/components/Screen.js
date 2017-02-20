@@ -6,10 +6,11 @@ import IncomingMessages from './IncomingMessages';
 
 export default class Screen extends Component {
   render(){
+      //console.log(this.props.initialCalls);
     return (
       <div className={css(styles.screen)}>
-          <IncomingCalls bValue='1'/>
-          <IncomingMessages bValue='1'/>
+          <IncomingCalls initialCalls = {this.props.initialCalls}/>
+          <IncomingMessages initialMessages = {this.props.initialMessages} />
 
       </div>
     )
