@@ -65,7 +65,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	__webpack_require__(214);
+	__webpack_require__(219);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21533,9 +21533,13 @@
 
 	var _Keyboard2 = _interopRequireDefault(_Keyboard);
 
+	var _ModelName = __webpack_require__(216);
+
+	var _ModelName2 = _interopRequireDefault(_ModelName);
+
 	var _noImportant = __webpack_require__(181);
 
-	var _AppStyles = __webpack_require__(213);
+	var _AppStyles = __webpack_require__(218);
 
 	var _AppStyles2 = _interopRequireDefault(_AppStyles);
 
@@ -21563,6 +21567,7 @@
 	        'div',
 	        { className: (0, _noImportant.css)(_AppStyles2.default.case) },
 	        _react2.default.createElement(_Antenna2.default, null),
+	        _react2.default.createElement(_ModelName2.default, null),
 	        _react2.default.createElement(_Screen2.default, null),
 	        _react2.default.createElement(_Keyboard2.default, null)
 	      );
@@ -23625,9 +23630,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _UsualButton = __webpack_require__(212);
+
+	var _UsualButton2 = _interopRequireDefault(_UsualButton);
+
 	var _noImportant = __webpack_require__(181);
 
-	var _KeyboardStyles = __webpack_require__(212);
+	var _ButtonTwo = __webpack_require__(214);
+
+	var _ButtonTwo2 = _interopRequireDefault(_ButtonTwo);
+
+	var _KeyboardStyles = __webpack_require__(215);
 
 	var _KeyboardStyles2 = _interopRequireDefault(_KeyboardStyles);
 
@@ -23651,7 +23664,13 @@
 	  _createClass(Keyboard, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement('div', { className: (0, _noImportant.css)(_KeyboardStyles2.default.keyboard) });
+	      return _react2.default.createElement(
+	        'div',
+	        { className: (0, _noImportant.css)(_KeyboardStyles2.default.keyboard) },
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '1' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '2' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '3' })
+	      );
 	    }
 	  }]);
 
@@ -23670,13 +23689,180 @@
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _ButtonStyles = __webpack_require__(213);
+
+	var _ButtonStyles2 = _interopRequireDefault(_ButtonStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var UsualButton = function (_Component) {
+	    _inherits(UsualButton, _Component);
+
+	    function UsualButton(props) {
+	        _classCallCheck(this, UsualButton);
+
+	        var _this = _possibleConstructorReturn(this, (UsualButton.__proto__ || Object.getPrototypeOf(UsualButton)).call(this, props));
+
+	        _this.showValue = function () {
+	            console.log(_this.props.bValue);
+	        };
+
+	        _this.state = {
+	            hover: false
+	        };
+
+	        return _this;
+	    }
+
+	    _createClass(UsualButton, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: (0, _noImportant.css)(_ButtonStyles2.default.wrapper) },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: (0, _noImportant.css)(_ButtonStyles2.default.myButton), onClick: this.showValue },
+	                    this.props.bValue
+	                )
+	            );
+	        }
+	    }]);
+
+	    return UsualButton;
+	}(_react.Component);
+
+	exports.default = UsualButton;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _noImportant = __webpack_require__(181);
+
+	exports.default = _noImportant.StyleSheet.create({
+	    myButton: {
+	        borderRadius: '10px',
+	        backgroundColor: '#88CDDA',
+	        border: '3px solid black',
+	        margin: '5%',
+	        textAlign: 'center',
+	        color: '#000',
+	        width: '55px',
+	        height: '2.5rem',
+	        fontSize: '1.2rem',
+	        fontFamily: 'Love Ya Like A Sister',
+	        ':active': {
+	            backgroundColor: 'red'
+	        },
+	        ':hover': {
+	            boxShadow: '2px 2px #666',
+	            cursor: 'pointer'
+	        }
+	    },
+	    wrapper: {
+	        display: 'contents',
+	        margin: '2%'
+	    }
+	});
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _ButtonStyles = __webpack_require__(213);
+
+	var _ButtonStyles2 = _interopRequireDefault(_ButtonStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ButtonTwo = function (_Component) {
+	  _inherits(ButtonTwo, _Component);
+
+	  function ButtonTwo() {
+	    _classCallCheck(this, ButtonTwo);
+
+	    return _possibleConstructorReturn(this, (ButtonTwo.__proto__ || Object.getPrototypeOf(ButtonTwo)).apply(this, arguments));
+	  }
+
+	  _createClass(ButtonTwo, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: (0, _noImportant.css)(_ButtonStyles2.default.myButton) },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          '2 abc'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ButtonTwo;
+	}(_react.Component);
+
+	exports.default = ButtonTwo;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _noImportant = __webpack_require__(181);
 
 	exports.default = _noImportant.StyleSheet.create({
 	    keyboard: {
-	        background: '#F0FFFF',
+	        background: '#708090',
 	        position: 'absolute',
-	        bottom: '8%',
+	        bottom: '7%',
+	        display: 'flex',
 	        left: '11%',
 	        width: '78%',
 	        height: '52%',
@@ -23686,7 +23872,99 @@
 	});
 
 /***/ },
-/* 213 */
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _ModelNameStyles = __webpack_require__(217);
+
+	var _ModelNameStyles2 = _interopRequireDefault(_ModelNameStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ModelName = function (_Component) {
+	  _inherits(ModelName, _Component);
+
+	  function ModelName() {
+	    _classCallCheck(this, ModelName);
+
+	    return _possibleConstructorReturn(this, (ModelName.__proto__ || Object.getPrototypeOf(ModelName)).apply(this, arguments));
+	  }
+
+	  _createClass(ModelName, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: (0, _noImportant.css)(_ModelNameStyles2.default.model) },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Kiano'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ModelName;
+	}(_react.Component);
+
+	exports.default = ModelName;
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _noImportant = __webpack_require__(181);
+
+	var coolFont = {
+	    fontFamily: 'Love Ya Like A Sister',
+	    fontStyle: 'cursive',
+	    src: "url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister')"
+	};
+	exports.default = _noImportant.StyleSheet.create({
+	    model: {
+	        position: 'absolute',
+	        top: '1.5%',
+	        left: '20%',
+	        width: '62%',
+	        height: '6%',
+	        border: '1px solid black',
+	        textAlign: 'center',
+	        color: 'black',
+	        fontStyle: 'cursive',
+	        //fontFamily: coolFont
+	        fontFamily: "Lucida"
+	    }
+	});
+
+/***/ },
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23711,7 +23989,7 @@
 	});
 
 /***/ },
-/* 214 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23719,10 +23997,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(215);
+	var content = __webpack_require__(220);
 	if (typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(217)(content, {});
+	var update = __webpack_require__(222)(content, {});
 	if (content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if (false) {
@@ -23741,10 +24019,10 @@
 	}
 
 /***/ },
-/* 215 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(216)();
+	exports = module.exports = __webpack_require__(221)();
 	// imports
 
 
@@ -23755,7 +24033,7 @@
 
 
 /***/ },
-/* 216 */
+/* 221 */
 /***/ function(module, exports) {
 
 	/*
@@ -23811,7 +24089,7 @@
 
 
 /***/ },
-/* 217 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

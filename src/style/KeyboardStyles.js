@@ -5,11 +5,11 @@ export default StyleSheet.create({
         background: '#708090',
         position: 'absolute',
         bottom: '7%',
-        display: 'flex',
         left: '11%',
         width: '78%',
         height: '52%',
         borderRadius: '40px',
-        border: '2px solid red'
+        border: '2px solid red',
+        textAlign: 'center'
     }
 });

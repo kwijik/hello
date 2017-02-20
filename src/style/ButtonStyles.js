@@ -22,7 +22,7 @@
               }
           },
           wrapper: {
-              display: 'contents',
+              display: 'inline-block',
               margin: '2%'
           }
       });

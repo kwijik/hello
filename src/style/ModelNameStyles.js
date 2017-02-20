@@ -16,6 +16,6 @@ export default StyleSheet.create({
         color:'black',
         fontStyle: 'cursive',
         //fontFamily: coolFont
-        fontFamily: "Lucida"
+        fontFamily: 'Love Ya Like A Sister'
     }
 });

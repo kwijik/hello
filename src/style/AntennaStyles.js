@@ -9,6 +9,7 @@ export default StyleSheet.create({
         height: '20%',
         zIndex: -1,
         borderRadius: '50px',
-        border: '2px solid black'
+        border: '2px solid black',
+        
     }
 });
