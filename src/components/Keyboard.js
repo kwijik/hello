@@ -9,14 +9,14 @@ export default class Keyboard extends Component {
     return (
       <div className={css(styles.keyboard)}>
           <UsualButton bValue='1'/>
-          <UsualButton bValue='2'/>
-          <UsualButton bValue='3'/>
-          <UsualButton bValue='4'/>
-          <UsualButton bValue='5'/>
-          <UsualButton bValue='6'/>
-          <UsualButton bValue='7'/>
-          <UsualButton bValue='8'/>
-          <UsualButton bValue='9'/>
+          <UsualButton bValue='2abc'/>
+          <UsualButton bValue='3def'/>
+          <UsualButton bValue='4ghi'/>
+          <UsualButton bValue='5jkl'/>
+          <UsualButton bValue='6mno'/>
+          <UsualButton bValue='7pqrs'/>
+          <UsualButton bValue='8tuv'/>
+          <UsualButton bValue='9vxyz'/>
           <UsualButton bValue='*'/>
           <UsualButton bValue='0'/>
           <UsualButton bValue='#'/>
