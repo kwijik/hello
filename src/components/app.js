@@ -5,19 +5,17 @@ import Keyboard from './Keyboard';
 import ModelName from './ModelName';
 import { css } from 'aphrodite/no-important';
 import styles from '../style/AppStyles';
+import {generateInitial} from './logic/DataGenerator';
+import {generateBars} from './logic/Reception';
 
 export default class App extends Component {
-
-generateInitial(){
-    return  Math.floor(Math.random() * 5) + 1;
-}
 
   render(){
     return (
       <div className={css(styles.case)}>
           <Antenna />
           <ModelName />
-          <Screen initialCalls= {this.generateInitial()} initialMessages = {this.generateInitial()}/>
+         <Screen initialReception={ generateBars() } initialCalls= { generateInitial() } initialMessages = { generateInitial() }/>
           <Keyboard />
       </div>
     )

@@ -6,19 +6,32 @@ export default class IncomingMessages extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numOfMessages: props.initialMessages
+            numOfMessages: props.initialMessages,
+            recentlyReceived: false
             //numOfMessages: 0
         }
     }
 
     getNewMessage() {
-      if (Math.random() < 0.20){
+      if (Math.random() < 0.40){
           this.setState((prevState) => ({
-            numOfMessages: prevState.numOfMessages + 1
+            numOfMessages: prevState.numOfMessages + 1,
+            recentlyReceived: true
+        }));
+        if (this.timeout){
+            clearTimeout(this.timeout);
+        }
+        this.timeout = setTimeout( () => {
+            this.timeout = null;
+            this.setState((prevState) => ({
+              numOfMessages: prevState.numOfMessages,
+              recentlyReceived: false
           }));
+        }, 4000);
       } else {
           this.setState((prevState) => ({
-            numOfMessages: prevState.numOfMessages
+            numOfMessages: prevState.numOfMessages,
+            recentlyReceived: prevState.recentlyReceived
           }));
       }
     }
@@ -32,10 +45,16 @@ export default class IncomingMessages extends Component {
     }
 
   render(){
-    return (
-      <div className={css(styles.messages)}>
-          <p>you have {this.state.numOfMessages} missed messages</p>
-      </div>
-    )
+      if (this.state.recentlyReceived){
+          return (
+
+            <div className={css(styles.messages)}>
+                <p>you have {this.state.numOfMessages} missed messages</p>
+            </div>
+        );
+      } else {
+          return null;
+      }
+
   }
 }
