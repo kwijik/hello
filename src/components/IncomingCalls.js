@@ -7,7 +7,8 @@ export default class IncomingCalls extends Component {
         super(props);
         this.state = {
             //numOfCalls: this.props.initialCalls
-            numOfCalls: this.props.initialCalls
+            numOfCalls: this.props.initialCalls,
+            recentlyReceived: false
 
         }
     }
@@ -16,11 +17,23 @@ export default class IncomingCalls extends Component {
   getNewCall() {
     if (Math.random() < 0.02){
         this.setState((prevState) => ({
-          numOfCalls: prevState.numOfCalls + 1
+          numOfCalls: prevState.numOfCalls + 1,
+          recentlyReceived: true
         }));
+        if( this.timeout){
+            clearTimeout(this.timeout);
+        }
+        this.timeout = setTimeout( () => {
+            this.timeout = null;
+            this.setState((prevState) => ({
+              numOfMessages: prevState.numOfMessages,
+              recentlyReceived: false
+          }));
+        }, 4000);
     } else {
         this.setState((prevState) => ({
-          numOfCalls: prevState.numOfCalls
+          numOfCalls: prevState.numOfCalls,
+          recentlyReceived: prevState.recentlyReceived
         }));
     }
   }
@@ -34,10 +47,14 @@ export default class IncomingCalls extends Component {
   }
 
   render(){
-    return (
-      <div className={css(styles.calls)}>
-          <p>you have  {this.state.numOfCalls} missed calls</p>
-      </div>
-    )
+    if (this.state.recentlyReceived){
+        return (
+            <div className={css(styles.calls)}>
+                <p>you have  {this.state.numOfCalls} missed calls</p>
+            </div>
+     );
+ } else {
+     return null;
+ }
   }
 }

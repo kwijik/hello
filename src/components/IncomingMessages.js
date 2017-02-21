@@ -13,8 +13,8 @@ export default class IncomingMessages extends Component {
     }
 
     getNewMessage() {
-      if (Math.random() < 0.40){
-          this.setState((prevState) => ({
+      if (Math.random() < 0.10){
+            this.setState((prevState) => ({
             numOfMessages: prevState.numOfMessages + 1,
             recentlyReceived: true
         }));
