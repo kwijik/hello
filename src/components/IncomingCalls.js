@@ -9,7 +9,6 @@ export default class IncomingCalls extends Component {
             //numOfCalls: this.props.initialCalls
             numOfCalls: this.props.initialCalls,
             recentlyReceived: false
-
         }
     }
 

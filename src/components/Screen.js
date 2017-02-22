@@ -4,6 +4,7 @@ import styles from '../style/ScreenStyles';
 import IncomingCalls from './IncomingCalls';
 import IncomingMessages from './IncomingMessages';
 import ReceptionBars from './ReceptionBars';
+import {timeGenerator} from './logic/TimeGenerator';
 
 export default class Screen extends Component {
   render(){
@@ -13,7 +14,6 @@ export default class Screen extends Component {
           <ReceptionBars initialReception = {this.props.initialReception} />
           <IncomingCalls initialCalls = {this.props.initialCalls}/>
           <IncomingMessages initialMessages = {this.props.initialMessages} />
-
 
       </div>
     )
