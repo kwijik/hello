@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite/no-important';
-import styles from '../style/ReceptionBarsStyles';
+import styles from '../style/BatteryStyles';
 import {generateBars} from './logic/Reception';
 import GlobalState from './GlobalState';
 
-export default class ReceptionBars extends Component {
+export default class Battery extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            percents: 20
+        }
     }
 
 
@@ -17,7 +19,7 @@ export default class ReceptionBars extends Component {
      return (
 
         <div className={css(styles.wrapper)}>
-
+            {this.state.percents}%
         </div>
      );
   }
