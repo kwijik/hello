@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite/no-important';
 import styles from '../style/BatteryStyles';
-import {generateBars} from './logic/Reception';
 import GlobalState from './GlobalState';
 
 export default class Battery extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            percents: 20
+            percents: props.initialBattery
         }
     }
 
@@ -16,6 +15,8 @@ export default class Battery extends Component {
 
 
    render(){
+       console.log(this.props.initialBattery);
+
      return (
 
         <div className={css(styles.wrapper)}>

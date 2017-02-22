@@ -14,7 +14,7 @@ export default class Screen extends Component {
     return (
       <div className={css(styles.screen)}>
           <ReceptionBars initialReception = {this.props.initialReception} />
-          <Battery initialReception = {this.props.initialReception} />
+          <Battery initialBattery = {this.props.initialBattery} />
 
           <IncomingCalls initialCalls = {this.props.initialCalls}/>
           <IncomingMessages initialMessages = {this.props.initialMessages} />
