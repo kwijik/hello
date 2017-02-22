@@ -9,7 +9,7 @@ export default StyleSheet.create({
         width: '78%',
         height: '52%',
         borderRadius: '40px',
-        border: '2px solid red',
+        border: '2px solid black',
         textAlign: 'center'
     }
 });

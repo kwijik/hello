@@ -7,7 +7,7 @@ export default StyleSheet.create({
          margin: 'auto',
          display: 'block',
          marginTop: '8%',
-         
+         color: "#008B8B",
          background: 'none'
     }
 });

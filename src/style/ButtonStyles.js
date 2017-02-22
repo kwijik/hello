@@ -8,6 +8,7 @@
               border: '3px solid black',
               margin: '5%',
               textAlign: 'center',
+              //marginTop: '5%',
               color: '#000',
               width: '55px',
               height: '2.5rem',
@@ -23,6 +24,8 @@
           },
           wrapper: {
               display: 'inline-block',
-              margin: '2%'
+              margin: '2%',
+              padding: '1%',
+              marginTop: '3%'
           }
       });
