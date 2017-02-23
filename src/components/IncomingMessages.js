@@ -11,7 +11,7 @@ export default class IncomingMessages extends Component {
             recentlyReceived: false
             //numOfMessages: 0
         }
-        GlobalState.showMessage = this.state.recentlyReceived
+        GlobalState.showMessage = false;
     }
 
     getNewMessage() {
@@ -36,6 +36,8 @@ export default class IncomingMessages extends Component {
             recentlyReceived: prevState.recentlyReceived
           }));
       }
+      GlobalState.showMessage = this.state.recentlyReceived
+
     }
 
     componentDidMount() {

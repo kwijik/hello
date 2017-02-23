@@ -10,7 +10,6 @@ export default class Battery extends Component {
             percents: props.initialBattery
         }
         GlobalState.hasPower = this.state.percents > 1;
-
     }
 
 
@@ -28,7 +27,7 @@ export default class Battery extends Component {
     }
 
     componentDidMount() {
-      this.interval = setInterval(() => this.drainBattery(), 4000);
+      this.interval = setInterval(() => this.drainBattery(), 1000);
     }
 
     componentWillUnmount() {
@@ -38,8 +37,12 @@ export default class Battery extends Component {
 
 
    render(){
-       console.log(`Percents of charge: ${this.state.percents}`);
-       console.log(`Global object from Battery: ${GlobalState.hasPower}`);
+       //console.log(`Percents of charge: ${this.state.percents}`);
+       //console.log(`Global object from Battery: ${GlobalState.hasPower}`);
+
+       //console.log(`Global object from Messages: ${GlobalState.showMessage}`);
+       //console.log(`Global object from Calls: ${GlobalState.showCall}`);
+
      return (
 
         <div className={css(styles.wrapper)}>

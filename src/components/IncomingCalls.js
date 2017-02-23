@@ -11,7 +11,7 @@ export default class IncomingCalls extends Component {
             numOfCalls: this.props.initialCalls,
             recentlyReceived: false
         }
-        GlobalState.showCall = this.state.recentlyReceived
+        GlobalState.showCall = this.state.recentlyReceived;
 
     }
 
@@ -38,6 +38,8 @@ export default class IncomingCalls extends Component {
           recentlyReceived: prevState.recentlyReceived
         }));
     }
+    GlobalState.showCall = this.state.recentlyReceived;
+
   }
 
   componentDidMount() {
@@ -49,7 +51,7 @@ export default class IncomingCalls extends Component {
   }
 
   render(){
-      console.log(`Global object from Calls: ${GlobalState.hasPower}`);
+      //console.log(`Global object from Calls: ${GlobalState.hasPower}`);
 
     if (this.state.recentlyReceived){
         return (

@@ -5,6 +5,7 @@ import IncomingCalls from './IncomingCalls';
 import IncomingMessages from './IncomingMessages';
 import ReceptionBars from './ReceptionBars';
 import Battery from './Battery';
+import Time from './Time';
 
 import {timeGenerator} from './logic/TimeGenerator';
 
@@ -15,6 +16,7 @@ export default class Screen extends Component {
       <div className={css(styles.screen)}>
           <ReceptionBars initialReception = {this.props.initialReception} />
           <Battery initialBattery = {this.props.initialBattery} />
+          <Time  />
 
           <IncomingCalls initialCalls = {this.props.initialCalls}/>
           <IncomingMessages initialMessages = {this.props.initialMessages} />
