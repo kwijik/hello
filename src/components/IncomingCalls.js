@@ -10,6 +10,8 @@ export default class IncomingCalls extends Component {
             numOfCalls: this.props.initialCalls,
             recentlyReceived: false
         }
+        GlobalState.showCall = this.state.recentlyReceived
+
     }
 
 
@@ -52,8 +54,8 @@ export default class IncomingCalls extends Component {
                 <p>you have  {this.state.numOfCalls} missed calls</p>
             </div>
      );
- } else {
-     return null;
- }
+    } else{
+        return null;
+    }
   }
 }

@@ -9,14 +9,36 @@ export default class Battery extends Component {
         this.state = {
             percents: props.initialBattery
         }
+        GlobalState.hasPower = this.state.percents > 1;
+
+    }
+
+
+    drainBattery() {
+        if (Math.random() < 0.2){
+            this.setState((prevState) => ({
+                percents: prevState.percents - 1
+        }));
+        } else {
+            this.setState((prevState) => ({
+                percents: prevState.percents
+            }));
+        }
+    }
+
+    componentDidMount() {
+      this.interval = setInterval(() => this.drainBattery(), 4000);
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.interval);
     }
 
 
 
-
    render(){
-       console.log(this.props.initialBattery);
-
+       console.log(this.state.percents);
+       console.log(GlobalState.hasPower);
      return (
 
         <div className={css(styles.wrapper)}>

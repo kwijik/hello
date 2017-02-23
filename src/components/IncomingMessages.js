@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite/no-important';
 import styles from '../style/MessagesStyles';
+import GlobalState from './GlobalState';
 
 export default class IncomingMessages extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ export default class IncomingMessages extends Component {
             recentlyReceived: false
             //numOfMessages: 0
         }
+        GlobalState.showMessage = this.state.recentlyReceived
     }
 
     getNewMessage() {
