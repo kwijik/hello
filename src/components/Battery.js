@@ -24,6 +24,7 @@ export default class Battery extends Component {
                 percents: prevState.percents
             }));
         }
+        GlobalState.hasPower = this.state.percents > 1;
     }
 
     componentDidMount() {
@@ -37,8 +38,8 @@ export default class Battery extends Component {
 
 
    render(){
-       console.log(this.state.percents);
-       console.log(GlobalState.hasPower);
+       console.log(`Percents of charge: ${this.state.percents}`);
+       console.log(`Global object from Battery: ${GlobalState.hasPower}`);
      return (
 
         <div className={css(styles.wrapper)}>

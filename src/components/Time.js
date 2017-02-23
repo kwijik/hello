@@ -12,9 +12,7 @@ export default class Time extends Component {
         }
 
     }
-
-
-
+    
   render(){
 
   }

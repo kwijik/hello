@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite/no-important';
 import styles from '../style/CallStyles';
+import GlobalState from './GlobalState';
 
 export default class IncomingCalls extends Component {
     constructor(props) {
@@ -48,6 +49,8 @@ export default class IncomingCalls extends Component {
   }
 
   render(){
+      console.log(`Global object from Calls: ${GlobalState.hasPower}`);
+
     if (this.state.recentlyReceived){
         return (
             <div className={css(styles.calls)}>
