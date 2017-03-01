@@ -3,7 +3,7 @@ import { StyleSheet } from 'aphrodite';
 export default StyleSheet.create({
     case: {
         position: 'absolute',
-        background: '#677A9A',
+        background: '#FF4B20',
         marginTop: '100px',
         width: '320px',
         height: '490px',

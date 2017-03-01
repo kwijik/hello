@@ -29,7 +29,7 @@ export default class IncomingMessages extends Component {
               numOfMessages: prevState.numOfMessages,
               recentlyReceived: false
           }));
-      }, 1000);
+        }, 4000);
       } else {
           this.setState((prevState) => ({
             numOfMessages: prevState.numOfMessages,
