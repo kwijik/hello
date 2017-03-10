@@ -1,10 +1,10 @@
 body {
-    color: blue;
+    
     background: yellow;
 }
 .container{
     position: relative;
     margin: auto;
     display: block;
-    
+
 }
