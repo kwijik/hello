@@ -48,6 +48,7 @@ export default class Battery extends Component {
         <div className={css(styles.wrapper)}>
             {this.state.percents}%
         </div>
+        <div className={css(styles.figure)}></div>
      );
   }
 }
