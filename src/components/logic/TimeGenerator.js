@@ -1,3 +1,4 @@
 export function timeGenerator(){
-    return  `${getHours()}`
+    let d = new Date();
+    return  `${d.getHours()}:${d.getMinutes()}`
 }

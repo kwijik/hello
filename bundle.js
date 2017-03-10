@@ -65,7 +65,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	__webpack_require__(219);
+	__webpack_require__(233);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21529,19 +21529,25 @@
 
 	var _Screen2 = _interopRequireDefault(_Screen);
 
-	var _Keyboard = __webpack_require__(211);
+	var _Keyboard = __webpack_require__(224);
 
 	var _Keyboard2 = _interopRequireDefault(_Keyboard);
 
-	var _ModelName = __webpack_require__(216);
+	var _ModelName = __webpack_require__(228);
 
 	var _ModelName2 = _interopRequireDefault(_ModelName);
 
 	var _noImportant = __webpack_require__(181);
 
-	var _AppStyles = __webpack_require__(218);
+	var _AppStyles = __webpack_require__(230);
 
 	var _AppStyles2 = _interopRequireDefault(_AppStyles);
+
+	var _BatteryGenerator = __webpack_require__(231);
+
+	var _DataGenerator = __webpack_require__(232);
+
+	var _Reception = __webpack_require__(218);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21568,7 +21574,11 @@
 	        { className: (0, _noImportant.css)(_AppStyles2.default.case) },
 	        _react2.default.createElement(_Antenna2.default, null),
 	        _react2.default.createElement(_ModelName2.default, null),
-	        _react2.default.createElement(_Screen2.default, null),
+	        _react2.default.createElement(_Screen2.default, { initialReception: (0, _Reception.generateBars)(),
+	          initialCalls: (0, _DataGenerator.generateInitial)(),
+	          initialMessages: (0, _DataGenerator.generateInitial)(),
+	          initialBattery: (0, _BatteryGenerator.generateBattery)()
+	        }),
 	        _react2.default.createElement(_Keyboard2.default, null)
 	      );
 	    }
@@ -23505,7 +23515,7 @@
 
 	exports.default = _noImportant.StyleSheet.create({
 	    antenna: {
-	        background: '#708090',
+	        background: '#FF4B20',
 	        position: 'absolute',
 	        top: '-10%',
 	        width: '14%',
@@ -23513,6 +23523,7 @@
 	        zIndex: -1,
 	        borderRadius: '50px',
 	        border: '2px solid black'
+
 	    }
 	});
 
@@ -23538,6 +23549,28 @@
 
 	var _ScreenStyles2 = _interopRequireDefault(_ScreenStyles);
 
+	var _IncomingCalls = __webpack_require__(211);
+
+	var _IncomingCalls2 = _interopRequireDefault(_IncomingCalls);
+
+	var _IncomingMessages = __webpack_require__(214);
+
+	var _IncomingMessages2 = _interopRequireDefault(_IncomingMessages);
+
+	var _ReceptionBars = __webpack_require__(216);
+
+	var _ReceptionBars2 = _interopRequireDefault(_ReceptionBars);
+
+	var _Battery = __webpack_require__(219);
+
+	var _Battery2 = _interopRequireDefault(_Battery);
+
+	var _Time = __webpack_require__(221);
+
+	var _Time2 = _interopRequireDefault(_Time);
+
+	var _TimeGenerator = __webpack_require__(223);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23558,7 +23591,16 @@
 	  _createClass(Screen, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement('div', { className: (0, _noImportant.css)(_ScreenStyles2.default.screen) });
+	      //console.log(this.props.initialCalls);
+	      return _react2.default.createElement(
+	        'div',
+	        { className: (0, _noImportant.css)(_ScreenStyles2.default.screen) },
+	        _react2.default.createElement(_ReceptionBars2.default, { initialReception: this.props.initialReception }),
+	        _react2.default.createElement(_Battery2.default, { initialBattery: this.props.initialBattery }),
+	        _react2.default.createElement(_Time2.default, null),
+	        _react2.default.createElement(_IncomingCalls2.default, { initialCalls: this.props.initialCalls }),
+	        _react2.default.createElement(_IncomingMessages2.default, { initialMessages: this.props.initialMessages })
+	      );
 	    }
 	  }]);
 
@@ -23588,7 +23630,8 @@
 	        width: '72%',
 	        height: '32%',
 	        borderRadius: '40px',
-	        border: '2px solid black'
+	        border: '2px solid black',
+	        padding: '15px'
 	    }
 	});
 
@@ -23621,6 +23664,318 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _CallStyles = __webpack_require__(212);
+
+	var _CallStyles2 = _interopRequireDefault(_CallStyles);
+
+	var _GlobalState = __webpack_require__(213);
+
+	var _GlobalState2 = _interopRequireDefault(_GlobalState);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var IncomingCalls = function (_Component) {
+	    _inherits(IncomingCalls, _Component);
+
+	    function IncomingCalls(props) {
+	        _classCallCheck(this, IncomingCalls);
+
+	        var _this = _possibleConstructorReturn(this, (IncomingCalls.__proto__ || Object.getPrototypeOf(IncomingCalls)).call(this, props));
+
+	        _this.state = {
+	            //numOfCalls: this.props.initialCalls
+	            numOfCalls: _this.props.initialCalls,
+	            recentlyReceived: false
+	        };
+	        _GlobalState2.default.showCall = _this.state.recentlyReceived;
+
+	        return _this;
+	    }
+
+	    _createClass(IncomingCalls, [{
+	        key: 'getNewCall',
+	        value: function getNewCall() {
+	            var _this2 = this;
+
+	            if (Math.random() < 0.15) {
+	                this.setState(function (prevState) {
+	                    return {
+	                        numOfCalls: prevState.numOfCalls + 1,
+	                        recentlyReceived: true
+	                    };
+	                });
+	                if (this.timeout) {
+	                    clearTimeout(this.timeout);
+	                }
+	                this.timeout = setTimeout(function () {
+	                    _this2.timeout = null;
+	                    _this2.setState(function (prevState) {
+	                        return {
+	                            numOfMessages: prevState.numOfMessages,
+	                            recentlyReceived: false
+	                        };
+	                    });
+	                }, 4000);
+	            } else {
+	                this.setState(function (prevState) {
+	                    return {
+	                        numOfCalls: prevState.numOfCalls,
+	                        recentlyReceived: prevState.recentlyReceived
+	                    };
+	                });
+	            }
+	            _GlobalState2.default.showCall = this.state.recentlyReceived;
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this3 = this;
+
+	            this.interval = setInterval(function () {
+	                return _this3.getNewCall();
+	            }, 1000);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            clearInterval(this.interval);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            //console.log(`Global object from Calls: ${GlobalState.hasPower}`);
+
+	            if (this.state.recentlyReceived) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: (0, _noImportant.css)(_CallStyles2.default.calls) },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'you have  ',
+	                        this.state.numOfCalls,
+	                        ' missed calls'
+	                    )
+	                );
+	            } else {
+	                return null;
+	            }
+	        }
+	    }]);
+
+	    return IncomingCalls;
+	}(_react.Component);
+
+	exports.default = IncomingCalls;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	     value: true
+	});
+
+	var _aphrodite = __webpack_require__(210);
+
+	exports.default = _aphrodite.StyleSheet.create({
+	     calls: {
+	          position: 'relative',
+	          margin: 'auto',
+	          display: 'block',
+	          marginTop: '8%',
+	          color: "#008B8B",
+	          background: 'none'
+	     }
+	});
+
+/***/ },
+/* 213 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    reception: 0
+	};
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _MessagesStyles = __webpack_require__(215);
+
+	var _MessagesStyles2 = _interopRequireDefault(_MessagesStyles);
+
+	var _GlobalState = __webpack_require__(213);
+
+	var _GlobalState2 = _interopRequireDefault(_GlobalState);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var IncomingMessages = function (_Component) {
+	    _inherits(IncomingMessages, _Component);
+
+	    function IncomingMessages(props) {
+	        _classCallCheck(this, IncomingMessages);
+
+	        var _this = _possibleConstructorReturn(this, (IncomingMessages.__proto__ || Object.getPrototypeOf(IncomingMessages)).call(this, props));
+
+	        _this.state = {
+	            numOfMessages: props.initialMessages,
+	            recentlyReceived: false
+	            //numOfMessages: 0
+	        };
+	        _GlobalState2.default.showMessage = false;
+	        return _this;
+	    }
+
+	    _createClass(IncomingMessages, [{
+	        key: 'getNewMessage',
+	        value: function getNewMessage() {
+	            var _this2 = this;
+
+	            if (Math.random() < 0.15) {
+	                this.setState(function (prevState) {
+	                    return {
+	                        numOfMessages: prevState.numOfMessages + 1,
+	                        recentlyReceived: true
+	                    };
+	                });
+	                if (this.timeout) {
+	                    clearTimeout(this.timeout);
+	                }
+	                this.timeout = setTimeout(function () {
+	                    _this2.timeout = null;
+	                    _this2.setState(function (prevState) {
+	                        return {
+	                            numOfMessages: prevState.numOfMessages,
+	                            recentlyReceived: false
+	                        };
+	                    });
+	                }, 4000);
+	            } else {
+	                this.setState(function (prevState) {
+	                    return {
+	                        numOfMessages: prevState.numOfMessages,
+	                        recentlyReceived: prevState.recentlyReceived
+	                    };
+	                });
+	            }
+	            _GlobalState2.default.showMessage = this.state.recentlyReceived;
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this3 = this;
+
+	            this.interval = setInterval(function () {
+	                return _this3.getNewMessage();
+	            }, 1000);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            clearInterval(this.interval);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            if (this.state.recentlyReceived) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: (0, _noImportant.css)(_MessagesStyles2.default.messages) },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'you have ',
+	                        this.state.numOfMessages,
+	                        ' missed messages'
+	                    )
+	                );
+	            } else {
+	                return null;
+	            }
+	        }
+	    }]);
+
+	    return IncomingMessages;
+	}(_react.Component);
+
+	exports.default = IncomingMessages;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	     value: true
+	});
+
+	var _aphrodite = __webpack_require__(210);
+
+	exports.default = _aphrodite.StyleSheet.create({
+	     messages: {
+	          position: 'relative',
+	          margin: 'auto',
+	          display: 'block',
+	          marginTop: '8%',
+	          color: "#008B8B",
+	          background: 'none'
+	     }
+	});
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
@@ -23630,17 +23985,444 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _UsualButton = __webpack_require__(212);
+	var _noImportant = __webpack_require__(181);
+
+	var _ReceptionBarsStyles = __webpack_require__(217);
+
+	var _ReceptionBarsStyles2 = _interopRequireDefault(_ReceptionBarsStyles);
+
+	var _Reception = __webpack_require__(218);
+
+	var _GlobalState = __webpack_require__(213);
+
+	var _GlobalState2 = _interopRequireDefault(_GlobalState);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ReceptionBars = function (_Component) {
+	  _inherits(ReceptionBars, _Component);
+
+	  function ReceptionBars(props) {
+	    _classCallCheck(this, ReceptionBars);
+
+	    var _this = _possibleConstructorReturn(this, (ReceptionBars.__proto__ || Object.getPrototypeOf(ReceptionBars)).call(this, props));
+
+	    _this.state = {
+
+	      reception: _this.props.initialReception
+	      //reception: 0
+	    };
+	    _GlobalState2.default.reception = _this.state.reception;
+	    return _this;
+	  }
+
+	  _createClass(ReceptionBars, [{
+	    key: 'changeBars',
+	    value: function changeBars() {
+	      if (Math.random() < 0.2) {
+	        this.setState(function (prevState) {
+	          return {
+	            reception: (0, _Reception.generateBars)()
+	          };
+	        });
+	      } else {
+	        this.setState(function (prevState) {
+	          return {
+	            reception: prevState.reception
+	          };
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      this.interval = setInterval(function () {
+	        return _this2.changeBars();
+	      }, 1000);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearInterval(this.interval);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      //console.log(this.props.initialCalls);
+	      return _react2.default.createElement(
+	        'div',
+	        { className: (0, _noImportant.css)(_ReceptionBarsStyles2.default.wrapper) },
+	        _react2.default.createElement(
+	          'div',
+	          { className: (0, _noImportant.css)(this.state.reception > 3 ? _ReceptionBarsStyles2.default.perfectReception : _ReceptionBarsStyles2.default.noShow) },
+	          ' '
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: (0, _noImportant.css)(this.state.reception > 2 ? _ReceptionBarsStyles2.default.highReception : _ReceptionBarsStyles2.default.noShow) },
+	          ' '
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: (0, _noImportant.css)(this.state.reception > 1 ? _ReceptionBarsStyles2.default.mediumReception : _ReceptionBarsStyles2.default.noShow) },
+	          ' '
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: (0, _noImportant.css)(this.state.reception > 0 ? _ReceptionBarsStyles2.default.lowReception : _ReceptionBarsStyles2.default.noShow) },
+	          ' '
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ReceptionBars;
+	}(_react.Component);
+
+	exports.default = ReceptionBars;
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _aphrodite = __webpack_require__(210);
+
+	exports.default = _aphrodite.StyleSheet.create({
+	    perfectReception: {
+	        position: 'absolute',
+	        width: '18%',
+	        height: '100%',
+	        bottom: '0%',
+	        right: '0',
+	        background: 'black'
+	    },
+
+	    highReception: {
+	        position: 'absolute',
+	        width: '18%',
+	        height: '80%',
+	        bottom: '0%',
+	        right: '25%',
+	        background: 'black'
+	    },
+	    mediumReception: {
+	        position: 'absolute',
+	        width: '18%',
+	        height: '60%',
+	        bottom: '0%',
+	        right: '50%',
+	        background: 'black'
+	    },
+	    lowReception: {
+	        position: 'absolute',
+	        width: '15%',
+	        height: '30%',
+	        bottom: '0%',
+	        right: '75%',
+	        background: 'black'
+	    },
+
+	    wrapper: {
+	        position: 'absolute',
+	        width: '15%',
+	        height: '14%',
+	        top: '3%',
+	        right: '9%'
+	    },
+	    noShow: {
+	        visibility: 'hidden'
+	    }
+	});
+
+/***/ },
+/* 218 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.generateBars = generateBars;
+	function generateBars() {
+	    return Math.floor(Math.random() * 5) + 0;
+	}
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _BatteryStyles = __webpack_require__(220);
+
+	var _BatteryStyles2 = _interopRequireDefault(_BatteryStyles);
+
+	var _GlobalState = __webpack_require__(213);
+
+	var _GlobalState2 = _interopRequireDefault(_GlobalState);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Battery = function (_Component) {
+	    _inherits(Battery, _Component);
+
+	    function Battery(props) {
+	        _classCallCheck(this, Battery);
+
+	        var _this = _possibleConstructorReturn(this, (Battery.__proto__ || Object.getPrototypeOf(Battery)).call(this, props));
+
+	        _this.state = {
+	            percents: props.initialBattery
+	        };
+	        _GlobalState2.default.hasPower = _this.state.percents > 1;
+	        return _this;
+	    }
+
+	    _createClass(Battery, [{
+	        key: 'drainBattery',
+	        value: function drainBattery() {
+	            if (Math.random() < 0.2) {
+	                this.setState(function (prevState) {
+	                    return {
+	                        percents: prevState.percents - 1
+	                    };
+	                });
+	            } else {
+	                this.setState(function (prevState) {
+	                    return {
+	                        percents: prevState.percents
+	                    };
+	                });
+	            }
+	            _GlobalState2.default.hasPower = this.state.percents > 1;
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            this.interval = setInterval(function () {
+	                return _this2.drainBattery();
+	            }, 1000);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            clearInterval(this.interval);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            //console.log(`Percents of charge: ${this.state.percents}`);
+	            //console.log(`Global object from Battery: ${GlobalState.hasPower}`);
+
+	            //console.log(`Global object from Messages: ${GlobalState.showMessage}`);
+	            //console.log(`Global object from Calls: ${GlobalState.showCall}`);
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: (0, _noImportant.css)(_BatteryStyles2.default.wrapper) },
+	                this.state.percents,
+	                '%'
+	            );
+	        }
+	    }]);
+
+	    return Battery;
+	}(_react.Component);
+
+	exports.default = Battery;
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _aphrodite = __webpack_require__(210);
+
+	exports.default = _aphrodite.StyleSheet.create({
+	    wrapper: {
+	        position: 'absolute',
+	        width: '15%',
+	        height: '14%',
+	        top: '3%',
+	        left: '9%',
+	        border: 'solid 1px black'
+	    }
+	});
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _noImportant = __webpack_require__(181);
+
+	var _TimeStyles = __webpack_require__(222);
+
+	var _TimeStyles2 = _interopRequireDefault(_TimeStyles);
+
+	var _GlobalState = __webpack_require__(213);
+
+	var _GlobalState2 = _interopRequireDefault(_GlobalState);
+
+	var _TimeGenerator = __webpack_require__(223);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Time = function (_Component) {
+	    _inherits(Time, _Component);
+
+	    function Time(props) {
+	        _classCallCheck(this, Time);
+
+	        var _this = _possibleConstructorReturn(this, (Time.__proto__ || Object.getPrototypeOf(Time)).call(this, props));
+
+	        _this.state = {
+	            time: _TimeGenerator.timeGenerator
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Time, [{
+	        key: 'updateTime',
+	        value: function updateTime() {
+	            this.setState(function (prevState) {
+	                return {
+	                    time: (0, _TimeGenerator.timeGenerator)()
+	                };
+	            });
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            this.interval = setInterval(function () {
+	                return _this2.updateTime();
+	            }, 1000);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            clearInterval(this.interval);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            console.log((0, _TimeGenerator.timeGenerator)());
+	            return _react2.default.createElement(
+	                'div',
+	                { className: (0, _noImportant.css)(_TimeStyles2.default.time) },
+	                this.state.time
+	            );
+	        }
+	    }]);
+
+	    return Time;
+	}(_react.Component);
+
+	exports.default = Time;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 223 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.timeGenerator = timeGenerator;
+	function timeGenerator() {
+	    var d = new Date();
+	    return d.getHours() + ":" + d.getMinutes();
+	}
+
+/***/ },
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _UsualButton = __webpack_require__(225);
 
 	var _UsualButton2 = _interopRequireDefault(_UsualButton);
 
 	var _noImportant = __webpack_require__(181);
 
-	var _ButtonTwo = __webpack_require__(214);
-
-	var _ButtonTwo2 = _interopRequireDefault(_ButtonTwo);
-
-	var _KeyboardStyles = __webpack_require__(215);
+	var _KeyboardStyles = __webpack_require__(227);
 
 	var _KeyboardStyles2 = _interopRequireDefault(_KeyboardStyles);
 
@@ -23668,8 +24450,17 @@
 	        'div',
 	        { className: (0, _noImportant.css)(_KeyboardStyles2.default.keyboard) },
 	        _react2.default.createElement(_UsualButton2.default, { bValue: '1' }),
-	        _react2.default.createElement(_UsualButton2.default, { bValue: '2' }),
-	        _react2.default.createElement(_UsualButton2.default, { bValue: '3' })
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '2abc' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '3def' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '4ghi' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '5jkl' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '6mno' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '7pqrs' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '8tuv' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '9vxyz' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '*' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '0' }),
+	        _react2.default.createElement(_UsualButton2.default, { bValue: '#' })
 	      );
 	    }
 	  }]);
@@ -23680,7 +24471,7 @@
 	exports.default = Keyboard;
 
 /***/ },
-/* 212 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23697,7 +24488,7 @@
 
 	var _noImportant = __webpack_require__(181);
 
-	var _ButtonStyles = __webpack_require__(213);
+	var _ButtonStyles = __webpack_require__(226);
 
 	var _ButtonStyles2 = _interopRequireDefault(_ButtonStyles);
 
@@ -23724,7 +24515,6 @@
 	        _this.state = {
 	            hover: false
 	        };
-
 	        return _this;
 	    }
 
@@ -23749,7 +24539,7 @@
 	exports.default = UsualButton;
 
 /***/ },
-/* 213 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23767,6 +24557,7 @@
 	        border: '3px solid black',
 	        margin: '5%',
 	        textAlign: 'center',
+	        //marginTop: '5%',
 	        color: '#000',
 	        width: '55px',
 	        height: '2.5rem',
@@ -23781,72 +24572,15 @@
 	        }
 	    },
 	    wrapper: {
-	        display: 'contents',
-	        margin: '2%'
+	        display: 'inline-block',
+	        margin: '2%',
+	        padding: '1%',
+	        marginTop: '3%'
 	    }
 	});
 
 /***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _noImportant = __webpack_require__(181);
-
-	var _ButtonStyles = __webpack_require__(213);
-
-	var _ButtonStyles2 = _interopRequireDefault(_ButtonStyles);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ButtonTwo = function (_Component) {
-	  _inherits(ButtonTwo, _Component);
-
-	  function ButtonTwo() {
-	    _classCallCheck(this, ButtonTwo);
-
-	    return _possibleConstructorReturn(this, (ButtonTwo.__proto__ || Object.getPrototypeOf(ButtonTwo)).apply(this, arguments));
-	  }
-
-	  _createClass(ButtonTwo, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: (0, _noImportant.css)(_ButtonStyles2.default.myButton) },
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          '2 abc'
-	        )
-	      );
-	    }
-	  }]);
-
-	  return ButtonTwo;
-	}(_react.Component);
-
-	exports.default = ButtonTwo;
-
-/***/ },
-/* 215 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23859,20 +24593,20 @@
 
 	exports.default = _noImportant.StyleSheet.create({
 	    keyboard: {
-	        background: '#708090',
+	        //background: '#708090',
 	        position: 'absolute',
-	        bottom: '7%',
-	        display: 'flex',
+	        bottom: '4%',
 	        left: '11%',
 	        width: '78%',
 	        height: '52%',
 	        borderRadius: '40px',
-	        border: '2px solid red'
+	        border: '2px solid black',
+	        textAlign: 'center'
 	    }
 	});
 
 /***/ },
-/* 216 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23889,7 +24623,7 @@
 
 	var _noImportant = __webpack_require__(181);
 
-	var _ModelNameStyles = __webpack_require__(217);
+	var _ModelNameStyles = __webpack_require__(229);
 
 	var _ModelNameStyles2 = _interopRequireDefault(_ModelNameStyles);
 
@@ -23931,7 +24665,7 @@
 	exports.default = ModelName;
 
 /***/ },
-/* 217 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23950,21 +24684,22 @@
 	exports.default = _noImportant.StyleSheet.create({
 	    model: {
 	        position: 'absolute',
+	        fontSize: '20px',
 	        top: '1.5%',
 	        left: '20%',
 	        width: '62%',
 	        height: '6%',
-	        border: '1px solid black',
+	        //border: '1px solid black',
 	        textAlign: 'center',
 	        color: 'black',
 	        fontStyle: 'cursive',
 	        //fontFamily: coolFont
-	        fontFamily: "Lucida"
+	        fontFamily: 'Love Ya Like A Sister'
 	    }
 	});
 
 /***/ },
-/* 218 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23978,18 +24713,46 @@
 	exports.default = _aphrodite.StyleSheet.create({
 	    case: {
 	        position: 'absolute',
-	        background: '#708090',
+	        background: '#FF4B20',
 	        marginTop: '100px',
 	        width: '320px',
 	        height: '490px',
-	        borderRadius: '20px',
+	        borderRadius: '28px',
 	        boxShadow: '5px 5px 5px #000',
 	        border: '3px solid black'
 	    }
 	});
 
 /***/ },
-/* 219 */
+/* 231 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.generateBattery = generateBattery;
+	function generateBattery() {
+	    return Math.floor(Math.random() * 99) + 2; // 2...100
+	}
+
+/***/ },
+/* 232 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.generateInitial = generateInitial;
+	function generateInitial() {
+	    return Math.floor(Math.random() * 5) + 1;
+	}
+
+/***/ },
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23997,10 +24760,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(220);
+	var content = __webpack_require__(234);
 	if (typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(222)(content, {});
+	var update = __webpack_require__(236)(content, {});
 	if (content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if (false) {
@@ -24019,10 +24782,10 @@
 	}
 
 /***/ },
-/* 220 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(221)();
+	exports = module.exports = __webpack_require__(235)();
 	// imports
 
 
@@ -24033,7 +24796,7 @@
 
 
 /***/ },
-/* 221 */
+/* 235 */
 /***/ function(module, exports) {
 
 	/*
@@ -24089,7 +24852,7 @@
 
 
 /***/ },
-/* 222 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
