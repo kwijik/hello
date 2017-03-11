@@ -7,7 +7,7 @@ export default StyleSheet.create({
          margin: 'auto',
          display: 'block',
          bottom: '30%',
-         left: '16%',
+         left: '24%',
          color: "#008B8B",
          background: 'none'
     }

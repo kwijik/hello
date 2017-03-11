@@ -27,7 +27,7 @@ export default class Screen extends Component {
     }
 
   render(){
-      console.log(`Global object from Screen: ${GlobalState.hasPower}`);
+      //console.log(`Global object from Screen: ${GlobalState.hasPower}`);
       if (GlobalState.hasPower){
           return (
 

@@ -17,7 +17,7 @@ export default class IncomingCalls extends Component {
 
 
   getNewCall() {
-    if (Math.random() < 0.15){
+    if (Math.random() < 0.10){
         this.setState((prevState) => ({
           numOfCalls: prevState.numOfCalls + 1,
           recentlyReceived: true

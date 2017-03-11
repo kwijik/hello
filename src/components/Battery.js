@@ -41,7 +41,7 @@ export default class Battery extends Component {
 
    render(){
        //console.log(`Percents of charge: ${this.state.percents}`);
-       console.log(`Global object from Battery: ${GlobalState.hasPower}`);
+       //console.log(`Global object from Battery: ${GlobalState.hasPower}`);
 
        //console.log(`Global object from Messages: ${GlobalState.showMessage}`);
        //console.log(`Global object from Calls: ${GlobalState.showCall}`);
