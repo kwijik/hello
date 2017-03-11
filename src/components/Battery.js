@@ -14,16 +14,19 @@ export default class Battery extends Component {
 
 
     drainBattery() {
-        if (Math.random() < 0.2){
-            this.setState((prevState) => ({
-                percents: prevState.percents - 1
-        }));
-        } else {
-            this.setState((prevState) => ({
-                percents: prevState.percents
-            }));
+        let percents = this.state.percents;
+        if (Math.random() < 0.2 && this.state.percents > 0){
+            //this.setState((prevState) => ({
+            //    percents: prevState.percents - 1
+            percents -= 1;
+        //}));
+        //} else {
+
         }
-        GlobalState.hasPower = this.state.percents > 1;
+        this.setState((prevState) => ({
+            percents: percents
+        }));
+        GlobalState.hasPower = percents > 0;
     }
 
     componentDidMount() {
@@ -38,7 +41,7 @@ export default class Battery extends Component {
 
    render(){
        //console.log(`Percents of charge: ${this.state.percents}`);
-       //console.log(`Global object from Battery: ${GlobalState.hasPower}`);
+       console.log(`Global object from Battery: ${GlobalState.hasPower}`);
 
        //console.log(`Global object from Messages: ${GlobalState.showMessage}`);
        //console.log(`Global object from Calls: ${GlobalState.showCall}`);
@@ -48,7 +51,6 @@ export default class Battery extends Component {
         <div className={css(styles.wrapper)}>
             {this.state.percents}%
         </div>
-        <div className={css(styles.figure)}></div>
      );
   }
 }

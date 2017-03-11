@@ -3,10 +3,11 @@ import { StyleSheet } from 'aphrodite';
 
 export default StyleSheet.create({
     messages: {
-         position: 'relative',
+         position: 'absolute',
          margin: 'auto',
          display: 'block',
-         marginTop: '8%',
+         bottom: '20%',
+         left: '16%',
          color: "#008B8B",
          background: 'none'
     }

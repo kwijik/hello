@@ -5,10 +5,11 @@ export default StyleSheet.create({
         position: 'absolute',
         background: '#FF4B20',
         marginTop: '100px',
-        width: '320px',
-        height: '490px',
+        width: '350px',
+        height: '500px',
         borderRadius: '28px',
         boxShadow: '5px 5px 5px #000',
-        border: '3px solid black'
+        border: '3px solid black',
+        left: '17%'
     }
 });

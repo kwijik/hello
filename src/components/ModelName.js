@@ -6,7 +6,7 @@ export default class ModelName extends Component {
   render(){
     return (
       <div className={css(styles.model)}>
-          <p>Kiano</p>
+          Kiano
       </div>
     )
   }

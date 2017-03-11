@@ -7,9 +7,10 @@ export default StyleSheet.create({
         bottom: '4%',
         left: '11%',
         width: '78%',
-        height: '52%',
+        height: '48%',
         borderRadius: '40px',
         border: '2px solid black',
-        textAlign: 'center'
+        textAlign: 'center',
+        //lineHeight: '2px'
     }
 });

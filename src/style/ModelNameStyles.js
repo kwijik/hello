@@ -8,15 +8,16 @@ export default StyleSheet.create({
     model: {
         position: 'absolute',
         fontSize: '20px',
-        top: '1.5%',
         left: '20%',
         width: '62%',
         height: '6%',
+        top: '10px',
         //border: '1px solid black',
         textAlign: 'center',
         color:'black',
         fontStyle: 'cursive',
         //fontFamily: coolFont
         fontFamily: 'Love Ya Like A Sister'
-    }
+    },
+
 });

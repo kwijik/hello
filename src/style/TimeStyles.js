@@ -8,6 +8,12 @@ export default StyleSheet.create({
         height: '14%',
         top: '3%',
         left: '42%',
-        
+    },
+    date: {
+        position: 'absolute',
+        width: '48%',
+        height: '5%',
+        top: '37%',
+        left: '30%',
     }
 });

@@ -10,9 +10,11 @@ export default StyleSheet.create({
         left: '9%',
         border: 'solid 1px black'
     }
+    /*
     figure: {
         position: 'absolute',
         width: '5%',
         height: '8%
     }
+    */
 });

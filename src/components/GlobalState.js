@@ -1,3 +1,4 @@
 export default {
-    reception: 0
+    reception: 0,
+    hasPower: true
 }

@@ -6,10 +6,10 @@
               borderRadius: '10px',
               backgroundColor:'#88CDDA',
               border: '3px solid black',
-              margin: '5%',
               textAlign: 'center',
               //marginTop: '5%',
               color: '#000',
+
               width: '55px',
               height: '2.5rem',
               fontSize: '1.2rem',
@@ -26,6 +26,8 @@
               display: 'inline-block',
               margin: '2%',
               padding: '1%',
-              marginTop: '3%'
+              marginLeft: '5%',
+              marginTop: '1.2%',
+              float: 'left'
           }
       });
